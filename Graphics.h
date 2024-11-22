@@ -10,8 +10,9 @@ namespace SDLFramework {
 	class Graphics {
 
 	public:
-		static const int SCREEN_WIDTH = 640;
-		static const int SCREEN_HEIGHT = 480;
+		static const int SCREEN_WIDTH = 1024;
+		static const int SCREEN_HEIGHT = 896;
+		const char* WINDOW_TITLE = "Galaga";
 
 		static Graphics* Instance();
 

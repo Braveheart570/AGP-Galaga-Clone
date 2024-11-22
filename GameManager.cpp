@@ -59,6 +59,7 @@ namespace SDLFramework {
 		mInputManager->Update();
 
 		//update code here
+		mStartScreen->Update();
 		
 	}
 
@@ -73,7 +74,7 @@ namespace SDLFramework {
 		mGraphics->ClearBackBuffer();
 
 		//render calls here
-		
+		mStartScreen->Render();
 
 		//draw to screem
 		mGraphics->Render();
@@ -113,8 +114,8 @@ namespace SDLFramework {
 			PhysicsManager::CollisionFlags::HostileProjectile
 		);
 
-		//define objects here
-
+		//define Screens
+		mStartScreen = new StartScreen();
 
 	}
 
@@ -137,6 +138,11 @@ namespace SDLFramework {
 
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
+
+		//release varaible
+		delete mStartScreen;
+		mStartScreen = nullptr;
+
 
 		//quit sdl subsystems
 		SDL_Quit();

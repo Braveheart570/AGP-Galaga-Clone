@@ -112,7 +112,7 @@ namespace SDLFramework {
 
 		//Draw a Window
 		mWindow = SDL_CreateWindow(
-			"Test Window",
+			WINDOW_TITLE,
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
 			SCREEN_WIDTH,
