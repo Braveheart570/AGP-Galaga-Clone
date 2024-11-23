@@ -94,6 +94,7 @@ namespace SDLFramework {
 		mInputManager = InputManager::Instance();
 		mAudioManager = AudioManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
+		mRandom = Random::Instance();
 
 
 		//Create Physics Layers
@@ -138,6 +139,9 @@ namespace SDLFramework {
 
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
+
+		Random::Release();
+		mRandom = nullptr;
 
 		//release varaible
 		delete mStartScreen;

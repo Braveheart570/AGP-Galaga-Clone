@@ -16,12 +16,22 @@ public:
 
 	void Update() override;
 
+	void ChangeSelectedMode(int change);
+
 
 private:
 
 	Timer* mTimer;
 
 	InputManager* mInputManager;
+
+	//Screen animation
+	Vector2 mAnimationStartPos;
+	Vector2 mAnimationEndPos;
+	float mAnimationTotalTime;
+	float mAnimationTimer;
+	bool mAnimationDone;
+
 
 	//Empty GameEntity/objects
 	GameEntity* mTopBar;
@@ -40,6 +50,10 @@ private:
 	Texture* mOnePlayerMode;
 	Texture* mTwoPlayerMode;
 	Texture* mCursor;
+	//Cursor
+	Vector2 mCursorStartPosition;
+	Vector2 mCursorOffsetPos;
+	int mSelectedMode;
 
 	//Bottom bar entities
 	GameEntity* mBottomBar;
