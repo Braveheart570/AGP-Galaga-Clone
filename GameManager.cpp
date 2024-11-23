@@ -59,6 +59,7 @@ namespace SDLFramework {
 		mInputManager->Update();
 
 		//update code here
+		mBackgroundStars->Update();
 		mStartScreen->Update();
 		
 	}
@@ -74,6 +75,7 @@ namespace SDLFramework {
 		mGraphics->ClearBackBuffer();
 
 		//render calls here
+		mBackgroundStars->Render();
 		mStartScreen->Render();
 
 		//draw to screem
@@ -94,7 +96,10 @@ namespace SDLFramework {
 		mInputManager = InputManager::Instance();
 		mAudioManager = AudioManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
+
 		mRandom = Random::Instance();
+		mBackgroundStars = BackgroundStars::Instance();
+		mBackgroundStars->Scroll(true);
 
 
 		//Create Physics Layers
@@ -142,6 +147,9 @@ namespace SDLFramework {
 
 		Random::Release();
 		mRandom = nullptr;
+
+		BackgroundStars::Release();
+		mBackgroundStars = nullptr;
 
 		//release varaible
 		delete mStartScreen;

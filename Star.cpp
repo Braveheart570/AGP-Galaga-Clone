@@ -27,6 +27,7 @@ Star::Star(int layer) : Texture("Stars.png",0,0,4,4) {
 	
 	mScrollSpeed = 4.0f / layer;
 
+	mVisible = true; // should this be here?
 
 }
 
