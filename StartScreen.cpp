@@ -102,8 +102,6 @@ StartScreen::StartScreen() {
 	// we me start screen after positioning the child objects.
 	Position(mAnimationStartPos);
 
-	std::cout << mPlayerOneScore << "\n" << mPlayerTwoScore << "\n" << mHighScore << "\n" << mNamco << std::endl;
-
 }
 
 
