@@ -99,6 +99,9 @@
     <ClCompile Include="BackgroundStars.cpp">
       <Filter>Game Source Files\Stars</Filter>
     </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+      <Filter>Game Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollider.h">
@@ -162,6 +165,9 @@
       <Filter>Game Header Files\Stars</Filter>
     </ClInclude>
     <ClInclude Include="StartScreen.h">
+      <Filter>Game Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
       <Filter>Game Header Files</Filter>
     </ClInclude>
   </ItemGroup>

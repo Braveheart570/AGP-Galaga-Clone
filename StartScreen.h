@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimatedTexture.h"
 #include "InputManager.h"
+#include "Scoreboard.h"
 
 using namespace SDLFramework;
 
@@ -33,11 +34,14 @@ private:
 	bool mAnimationDone;
 
 
-	//Empty GameEntity/objects
+	//Top Bar entities
 	GameEntity* mTopBar;
 	Texture* mPlayerOne;
 	Texture* mPlayerTwo;
 	Texture* mHiScore;
+	Scoreboard* mPlayerOneScore;
+	Scoreboard* mPlayerTwoScore;
+	Scoreboard* mHighScore;
 
 
 	//logo entities

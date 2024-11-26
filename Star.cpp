@@ -27,8 +27,6 @@ Star::Star(int layer) : Texture("Stars.png",0,0,4,4) {
 	
 	mScrollSpeed = 4.0f / layer;
 
-	mVisible = true; // should this be here?
-
 }
 
 Star::~Star() {
@@ -54,7 +52,7 @@ void Star::ScrollStar() {
 
 void Star::Update() {
 
-	mFlickerTime == mTimer->DeltaTime();
+	mFlickerTime += mTimer->DeltaTime();
 
 	if (mFlickerTime >= mFlickerSpeed) {
 		mVisible = !mVisible;

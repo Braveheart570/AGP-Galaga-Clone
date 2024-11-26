@@ -99,7 +99,6 @@ namespace SDLFramework {
 
 		mRandom = Random::Instance();
 		mBackgroundStars = BackgroundStars::Instance();
-		mBackgroundStars->Scroll(true);
 
 
 		//Create Physics Layers

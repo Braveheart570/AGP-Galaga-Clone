@@ -37,6 +37,20 @@ StartScreen::StartScreen() {
 	mPlayerTwo->Position(Graphics::SCREEN_WIDTH * 0.2, 0);
 	mHiScore->Position(-30, 0.0f);
 
+	mPlayerOneScore = new Scoreboard();
+	mPlayerTwoScore = new Scoreboard();
+	mHighScore = new Scoreboard();
+
+	mPlayerOneScore->Parent(mTopBar);
+	mPlayerTwoScore->Parent(mTopBar);
+	mHighScore->Parent(mTopBar);
+
+	mPlayerOneScore->Position(-Graphics::SCREEN_WIDTH * 0.23f, 40.0f);
+	mPlayerTwoScore->Position(Graphics::SCREEN_WIDTH * 0.32f, 40.0f);
+	mHighScore->Position(Graphics::SCREEN_WIDTH*0.05f, 40.0f);
+
+	mHighScore->Score(80); // this is screwing up other scoreboards.
+
 
 	//logo and holder
 	mLogoHolder = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.32f);
@@ -88,6 +102,7 @@ StartScreen::StartScreen() {
 	// we me start screen after positioning the child objects.
 	Position(mAnimationStartPos);
 
+	std::cout << mPlayerOneScore << "\n" << mPlayerTwoScore << "\n" << mHighScore << "\n" << mNamco << std::endl;
 
 }
 
@@ -106,6 +121,14 @@ StartScreen::~StartScreen() {
 	delete mHiScore;
 	mHiScore = nullptr;
 
+	delete mPlayerOneScore;
+	mPlayerOneScore = nullptr;
+
+	delete mPlayerTwoScore;
+	mPlayerTwoScore = nullptr;
+
+	delete mHighScore;
+	mHighScore = nullptr;
 
 
 	delete mLogoHolder;
@@ -163,6 +186,10 @@ void StartScreen::Render() {
 	mPlayerTwo->Render();
 	mHiScore->Render();
 
+	mPlayerOneScore->Render();
+	mPlayerTwoScore->Render();
+	mHighScore->Render();
+
 	if (mAnimationDone) {
 		mAnimatedLogo->Render();
 	}
@@ -213,6 +240,9 @@ void StartScreen::Update() {
 		}
 		else if (mInputManager->KeyPressed(SDL_SCANCODE_SPACE)) {
 
+		}
+		else if (mInputManager->KeyPressed(SDL_SCANCODE_X)) { // testing
+			mHighScore->Score(8700); // this is screwing up other scoreboards.TODO
 		}
 
 	}
