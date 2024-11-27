@@ -1,5 +1,6 @@
 #pragma once
 #include "StartScreen.h"
+#include "PlayScreen.h"
 #include "BackgroundStars.h"
 #include <iostream>
 
@@ -25,6 +26,7 @@ private:
 
 	//screens
 	StartScreen* mStartScreen;
+	PlayScreen* mPlayScreen;
 
 	ScreenManager();
 	~ScreenManager();

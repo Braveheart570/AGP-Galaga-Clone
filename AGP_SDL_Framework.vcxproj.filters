@@ -105,6 +105,12 @@
     <ClCompile Include="ScreenManager.cpp">
       <Filter>Game Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayScreen.cpp">
+      <Filter>Game Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySideBar.cpp">
+      <Filter>Game Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -174,6 +180,12 @@
       <Filter>Header Files\Entites</Filter>
     </ClInclude>
     <ClInclude Include="ScreenManager.h">
+      <Filter>Game Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScreen.h">
+      <Filter>Game Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySideBar.h">
       <Filter>Game Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -133,6 +133,8 @@ namespace SDLFramework {
 			return false;
 		}
 
+		//SDL_SetRenderDrawColor(mRenderer, 0xFF, 0xff, 0xff, 0xff); //for testing the black background of the sidebar
+
 		if (TTF_Init() == -1) {
 			std::cerr << "unable to Initialize SDL_TTF! TTF_Error: " << TTF_GetError() << std::endl;
 			return false;

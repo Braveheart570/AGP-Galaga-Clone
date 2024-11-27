@@ -18,6 +18,7 @@ ScreenManager::ScreenManager() {
 	mBackgroundStars = BackgroundStars::Instance();
 	mInputManager = InputManager::Instance();
 	mStartScreen = new StartScreen();
+	mPlayScreen = new PlayScreen();
 	mCurrentScreen = Start;
 }
 
@@ -30,6 +31,9 @@ ScreenManager::~ScreenManager() {
 
 	delete mStartScreen;
 	mStartScreen = nullptr;
+
+	delete mPlayScreen;
+	mPlayScreen = nullptr;
 }
 
 void ScreenManager::Update() {
@@ -42,15 +46,17 @@ void ScreenManager::Update() {
 		if (mInputManager->KeyPressed(SDL_SCANCODE_RETURN)) {
 			mCurrentScreen = Play;
 			mStartScreen->ResetAnimation();
-			mBackgroundStars->Scroll(true);
+			
 		}
 
 		break;
 	case Play:
 
+		mPlayScreen->Update();
+
 		if (mInputManager->KeyPressed(SDL_SCANCODE_ESCAPE)) {
 			mCurrentScreen = Start;
-			mBackgroundStars->Scroll(false);
+			
 		}
 
 		break;
@@ -69,6 +75,7 @@ void ScreenManager::Render() {
 		mStartScreen->Render();
 		break;
 	case Play:
+		mPlayScreen->Render();
 		break;
 	}
 
