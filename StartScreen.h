@@ -19,6 +19,10 @@ public:
 
 	void ChangeSelectedMode(int change);
 
+	void ResetAnimation();
+
+	int selectedMode();
+
 
 private:
 

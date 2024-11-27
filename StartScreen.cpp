@@ -7,14 +7,6 @@ StartScreen::StartScreen() {
 	mTimer = Timer::Instance();
 	mInputManager = InputManager::Instance();
 
-
-	//screen animation init
-	mAnimationStartPos = Vector2(0.0f, Graphics::SCREEN_HEIGHT);
-	mAnimationEndPos = Vect2_Zero;
-	mAnimationTotalTime = 5.0f;
-	mAnimationTimer = 0.0f;
-	mAnimationDone = false;
-
 	//cursor variables
 	mSelectedMode = 0;
 	mCursorStartPosition = Vector2(-175.0f, -35.0f);
@@ -99,8 +91,8 @@ StartScreen::StartScreen() {
 	mRights->Position(0.0f, 170.0f);
 
 
-	// we me start screen after positioning the child objects.
-	Position(mAnimationStartPos);
+	//screen animation init
+	ResetAnimation();
 
 }
 
@@ -263,4 +255,17 @@ void StartScreen::ChangeSelectedMode(int change) {
 	mCursor->Position(mCursorStartPosition + (mCursorOffsetPos * (float)mSelectedMode));
 	
 
+}
+
+void StartScreen::ResetAnimation() {
+	mAnimationStartPos = Vector2(0.0f, Graphics::SCREEN_HEIGHT);
+	mAnimationEndPos = Vect2_Zero;
+	mAnimationTotalTime = 5.0f;
+	mAnimationDone = false;
+	mAnimationTimer = 0;
+	Position(mAnimationStartPos);
+}
+
+int StartScreen::selectedMode() {
+	return mSelectedMode;
 }

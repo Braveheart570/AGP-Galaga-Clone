@@ -59,8 +59,7 @@ namespace SDLFramework {
 		mInputManager->Update();
 
 		//update code here
-		mBackgroundStars->Update();
-		mStartScreen->Update();
+		mScreenManager->Update();
 		
 	}
 
@@ -75,8 +74,7 @@ namespace SDLFramework {
 		mGraphics->ClearBackBuffer();
 
 		//render calls here
-		mBackgroundStars->Render();
-		mStartScreen->Render();
+		mScreenManager->Render();
 
 		//draw to screem
 		mGraphics->Render();
@@ -98,7 +96,7 @@ namespace SDLFramework {
 		mPhysicsManager = PhysicsManager::Instance();
 
 		mRandom = Random::Instance();
-		mBackgroundStars = BackgroundStars::Instance();
+		mScreenManager = ScreenManager::Instance();
 
 
 		//Create Physics Layers
@@ -118,9 +116,6 @@ namespace SDLFramework {
 			PhysicsManager::CollisionFlags::Hostile |
 			PhysicsManager::CollisionFlags::HostileProjectile
 		);
-
-		//define Screens
-		mStartScreen = new StartScreen();
 
 	}
 
@@ -147,12 +142,8 @@ namespace SDLFramework {
 		Random::Release();
 		mRandom = nullptr;
 
-		BackgroundStars::Release();
-		mBackgroundStars = nullptr;
-
-		//release varaible
-		delete mStartScreen;
-		mStartScreen = nullptr;
+		ScreenManager::Release();
+		mScreenManager = nullptr;
 
 
 		//quit sdl subsystems

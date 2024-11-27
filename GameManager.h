@@ -4,9 +4,8 @@
 #include "AudioManager.h"
 #include "PhysicsManager.h"
 
-#include "StartScreen.h"
 #include "Random.h"
-#include "BackgroundStars.h"
+#include "ScreenManager.h"
 
 
 
@@ -46,13 +45,9 @@ namespace SDLFramework {
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		PhysicsManager* mPhysicsManager;
-		BackgroundStars* mBackgroundStars;
+		ScreenManager* mScreenManager;
 
 		Random* mRandom;
-
-
-		//screens
-		StartScreen* mStartScreen;
 
 
 
