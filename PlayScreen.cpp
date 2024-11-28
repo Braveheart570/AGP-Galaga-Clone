@@ -30,3 +30,16 @@ void PlayScreen::Render() {
 	mPlaySideBar->Render();
 
 }
+
+void PlayScreen::StartNewGame() {
+
+	mPlaySideBar->SetHighScore(645987);
+	mPlaySideBar->SetPlayerScore(0);
+	mPlaySideBar->SetShips(6);
+	//testing
+	StartNextLevel();
+}
+
+void PlayScreen::StartNextLevel() {
+	mPlaySideBar->SetLevel(75);
+}
