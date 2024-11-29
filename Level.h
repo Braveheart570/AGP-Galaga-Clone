@@ -17,21 +17,23 @@ public:
 private:
 
 	Timer* mTimer;
-	PlaySideBar* mSidebar;
+	PlaySideBar* mSideBar;
 	BackgroundStars* mBackgroundStars;
 
 	int mStage;
 	bool mStageStarted;
 
-	Texture* mReadylabel;
+	Texture* mReadyLabel;
 	float mReadyLabelOnScreen;
 	float mReadyLabelOffScreen;
 
 	Texture* mStageLabel;
+	Scoreboard* mStageNumber;
 	float mStageLabelOnScreen;
 	float mStageLabelOffScreen;
 
-	float labelTimer;
+	float mLabelTimer;
+
 
 	void StartStage();
 };

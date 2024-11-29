@@ -1,6 +1,5 @@
 #pragma once
-#include "BackgroundStars.h"
-#include "PlaySideBar.h"
+#include "Level.h"
 
 
 class PlayScreen : public GameEntity {
@@ -25,5 +24,17 @@ private:
 
 	PlaySideBar* mPlaySideBar;
 
+
+
+	Texture* mStartLabel;
+
+	Level* mLevel;
+
+	float mLevelStartTimer;
+	float mLevelStartDelay;
+
+	bool mGameStarted;
+	bool mLevelStarted;
+	int mCurrentStage;
 
 };

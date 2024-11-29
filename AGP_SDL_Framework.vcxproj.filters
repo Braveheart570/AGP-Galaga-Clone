@@ -111,6 +111,12 @@
     <ClCompile Include="PlaySideBar.cpp">
       <Filter>Game Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Game Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -189,6 +195,9 @@
       <Filter>Game Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
+      <Filter>Game Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Game Header Files</Filter>
     </ClInclude>
   </ItemGroup>
