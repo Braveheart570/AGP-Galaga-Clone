@@ -40,7 +40,7 @@ void PlayScreen::Update() {
 	if (mGameStarted) {
 		if (!mLevelStarted) {
 			mLevelStartTimer += mTimer->DeltaTime();
-			if (mLevelStarted >= mLevelStartDelay) {
+			if (mLevelStartTimer >= mLevelStartDelay) {
 				StartNextLevel();
 			}
 		}
