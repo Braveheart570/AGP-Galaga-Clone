@@ -10,9 +10,9 @@ PlayScreen::PlayScreen() {
 	mPlaySideBar->Parent(this);
 	mPlaySideBar->Position(Graphics::SCREEN_WIDTH*0.87f, Graphics::SCREEN_HEIGHT*0.05f);
 
-	mStartLabel = new Texture("Start", "emulogic.ttf", 32, {150,0,0});
+	mStartLabel = new Texture("START", "emulogic.ttf", 32, {150,0,0});
 	mStartLabel->Parent(this);
-	mStartLabel->Position(Graphics::SCREEN_WIDTH*0.04f,Graphics::SCREEN_HEIGHT*0.5f);
+	mStartLabel->Position(Graphics::SCREEN_WIDTH*0.4f,Graphics::SCREEN_HEIGHT*0.5f);
 
 	mLevel = nullptr;
 	mLevelStartDelay = 1.0f;
@@ -83,7 +83,7 @@ void PlayScreen::Render() {
 void PlayScreen::StartNewGame() {
 
 	mPlaySideBar->SetHighScore(645987);
-	mPlaySideBar->SetShips(6);
+	mPlaySideBar->SetShips(2);
 	mBackgroundStars->Scroll(false);
 	mGameStarted = false;
 	mLevelStarted = false;
