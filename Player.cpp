@@ -39,8 +39,9 @@ Player::Player() {
 	mMoveSpeed = 100.0f;
 	mMoveBounds = Vector2(0.0f,800.0f);
 
-	mShip = new Texture("PlayerShips.png", 0, 0, 60, 64);
+	mShip = new Texture("SpriteSheet.png", 183, 54, 16, 16);
 	mShip->Parent(this);
+	mShip->Scale(Vector2(4,4));
 	mShip->Position(Vect2_Zero);
 
 	mDeathAnimation = new AnimatedTexture("PlayerExplosion.png", 0.0f, 0.0f, 128.0f, 128.0f, 4, 1.0f, AnimatedTexture::Horizontal);
@@ -102,9 +103,12 @@ void Player::AddScore(int change) {
 	mScore += change;
 
 }
-
-bool Player::wasHit() {
-	return mWasHit;
+// temp fucntion, will use hit in the future
+void Player::wasHit() {
+	mLives -= 1;
+	mAnimating = true;
+	mDeathAnimation->ResetAnimation();
+	mAudioManager->PlaySFX("PlayerExplosion.wav");
 }
 
 bool Player::IgnoreCollisions() {

@@ -18,6 +18,8 @@ PlayScreen::PlayScreen() {
 	mLevelStartDelay = 1.0f;
 	mLevelStarted = false;
 
+	mPlayer = nullptr;
+
 }
 
 PlayScreen::~PlayScreen() {
@@ -32,11 +34,12 @@ PlayScreen::~PlayScreen() {
 	delete mLevel;
 	mLevel = nullptr;
 
-
+	delete mPlayer;
+	mPlayer = nullptr;
 }
 
 void PlayScreen::Update() {
-
+	
 	if (mGameStarted) {
 		if (!mLevelStarted) {
 			mLevelStartTimer += mTimer->DeltaTime();
@@ -46,7 +49,11 @@ void PlayScreen::Update() {
 		}
 		else {
 			//the level has started or is in session.
+
 			mLevel->Update();
+			if (mLevel->State() == Level::Finished) {
+				mLevelStarted = false;
+			}
 		}
 
 		//we are in a level at this point
@@ -54,6 +61,7 @@ void PlayScreen::Update() {
 			mPlaySideBar->Update();
 		}
 
+		mPlayer->Update();
 
 	}
 	else {
@@ -72,8 +80,14 @@ void PlayScreen::Render() {
 		mStartLabel->Render();
 	}
 
-	if (mGameStarted && mLevelStarted) {
-		mLevel->Render();
+	if (mGameStarted) {
+
+		if (mLevelStarted) {
+			mLevel->Render();
+		}
+
+		mPlayer->Render();
+		
 	}
 
 	mPlaySideBar->Render();
@@ -82,14 +96,24 @@ void PlayScreen::Render() {
 
 void PlayScreen::StartNewGame() {
 
+	delete mPlayer;
+	mPlayer = new Player();
+	mPlayer->Parent(this);
+	mPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.8f);
+	mPlayer->Active(false);
+
 	mPlaySideBar->SetHighScore(645987);
-	mPlaySideBar->SetShips(2);
+	mPlaySideBar->SetShips(mPlayer->Lives());
+	mPlaySideBar->SetPlayerScore(mPlayer->Score());
+	mPlaySideBar->SetLevel(0);
+
+
 	mBackgroundStars->Scroll(false);
 	mGameStarted = false;
 	mLevelStarted = false;
 	mLevelStartTimer = 0.0f;
 	mCurrentStage = 0;
-	mAudioManager->PlayMusic("GameStart.wav", 0);
+	//mAudioManager->PlayMusic("GameStart.wav", 0);
 
 }
 
@@ -99,6 +123,13 @@ void PlayScreen::StartNextLevel() {
 	mLevelStarted = true;
 
 	delete mLevel;
-	mLevel = new Level(mCurrentStage, mPlaySideBar);
+	mLevel = new Level(mCurrentStage, mPlaySideBar, mPlayer);
+
+}
+
+bool PlayScreen::GameOver() {
+
+	//if !mLevelStarted retunr false, otherwise return the value of the fallowing statement.
+	return !mLevelStarted ? false : (mLevel->State() == Level::GameOver);
 
 }

@@ -25,7 +25,7 @@ public:
 
 	void AddScore(int change);
 
-	bool wasHit();
+	void wasHit();
 
 	//inherited
 	bool IgnoreCollisions() override;

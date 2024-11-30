@@ -1,5 +1,7 @@
 #pragma once
 #include "Level.h"
+#include "Player.h"
+
 
 
 class PlayScreen : public GameEntity {
@@ -11,6 +13,8 @@ public:
 
 	void StartNewGame();
 	void StartNextLevel();
+
+	bool GameOver();
 
 	void Update() override;
 	void Render() override;
@@ -27,6 +31,8 @@ private:
 
 
 	Texture* mStartLabel;
+
+	Player* mPlayer;
 
 	Level* mLevel;
 
