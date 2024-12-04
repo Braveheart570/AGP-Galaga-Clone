@@ -23,6 +23,20 @@ void Player::HandleMovement() {
 
 }
 
+void Player::HandleFiring() {
+	if (mInputManager->KeyPressed(SDL_SCANCODE_SPACE)) {
+		for (int c = 0; c < MAX_BULLETS; c++) {
+			if (!mBullets[c]->Active()) {
+				mBullets[c]->Fire(Position());
+				mAudioManager->PlaySFX("Fire.wav");
+				break;
+			}
+		}
+	}
+}
+
+
+
 Player::Player() {
 
 	mTimer = Timer::Instance();
@@ -36,7 +50,7 @@ Player::Player() {
 	mScore = 0;
 	mLives = 2;
 	
-	mMoveSpeed = 100.0f;
+	mMoveSpeed = 150.0f;
 	mMoveBounds = Vector2(0.0f,800.0f);
 
 	mShip = new Texture("SpriteSheet.png", 183, 54, 16, 16);
@@ -56,6 +70,13 @@ Player::Player() {
 
 	mId = PhysicsManager::Instance()->RegisterEntity(this, PhysicsManager::CollisionLayers::Friendly);
 
+
+	//bullets
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		mBullets[i] = new Bullet(true);
+	}
+
+
 }
 
 
@@ -71,7 +92,12 @@ Player::~Player() {
 	delete mDeathAnimation;
 	mDeathAnimation = nullptr;
 
-	//physics manager (or phys entity?) handles the colliders
+	//physics manager (or phys entity?) handles the colliders so we do not need to do that here.
+
+	for (auto bullet : mBullets) {
+		delete bullet;
+		bullet = nullptr;
+	}
 
 }
 
@@ -135,8 +161,14 @@ void Player::Update() {
 	else {
 		if (Active()) {
 			HandleMovement();
+			HandleFiring();
+
 		}
 		
+	}
+
+	for (auto b : mBullets) {
+		b->Update();
 	}
 
 }
@@ -155,4 +187,9 @@ void Player::Render() {
 
 	}
 
+	for (auto b : mBullets) {
+		b->Render();
+	}
+
 }
+

@@ -20,6 +20,8 @@ PlayScreen::PlayScreen() {
 
 	mPlayer = nullptr;
 
+	Enemy::CreatePaths(); // must be called before enemy creation
+
 }
 
 PlayScreen::~PlayScreen() {
@@ -113,7 +115,7 @@ void PlayScreen::StartNewGame() {
 	mLevelStarted = false;
 	mLevelStartTimer = 0.0f;
 	mCurrentStage = 0;
-	//mAudioManager->PlayMusic("GameStart.wav", 0);
+	//mAudioManager->PlayMusic("GameStart.wav", 0); //coment this out to skip music
 
 }
 

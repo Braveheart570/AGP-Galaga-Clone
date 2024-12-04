@@ -146,4 +146,15 @@ namespace SDLFramework {
 	}
 
 
+	void Graphics::DrawLine(int x1, int y1, int x2, int y2) {
+
+		SDL_Color colorHolder = SDL_Color();
+
+		SDL_GetRenderDrawColor(mRenderer, &colorHolder.r, &colorHolder.g, &colorHolder.b, &colorHolder.a);
+		SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(mRenderer, x1, y1, x2, y2);
+		SDL_SetRenderDrawColor(mRenderer, colorHolder.r, colorHolder.g, colorHolder.b, colorHolder.a);
+
+	}
+
 }

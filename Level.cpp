@@ -53,6 +53,8 @@ Level::Level(int stage, PlaySideBar* sidebar, Player* player) {
 
 	mCurrentState = Running;
 
+	mEnemy = new Enemy(0);
+
 }
 
 Level::~Level() {
@@ -74,6 +76,11 @@ Level::~Level() {
 
 	delete mGameOverLabel;
 	mGameOverLabel = nullptr;
+
+	mPlayer = nullptr;
+
+	delete mEnemy;
+	mEnemy = nullptr;
 
 }
 
@@ -169,6 +176,7 @@ void Level::Update() {
 
 	}
 	else {
+		mEnemy->Update();
 		HandleCollisions();
 
 		if (mPlayerHit) {
@@ -195,6 +203,9 @@ void Level::Render() {
 		}
 	}
 	else {
+
+		mEnemy->Render();
+
 		if (mPlayerHit) {
 			if (mRespawnTimer >= mRespawnLabelOnScreen) {
 				mReadyLabel->Render();
