@@ -77,13 +77,13 @@ void Enemy::HandleFlyInState() {
 		Translate(dist.Normalized()*mSpeed*mTimer->DeltaTime(), WORLD);
 		Rotate(atan2(dist.y, dist.x)*RAD_TO_DEG + 90.0f);
 
-		if ((sPaths[mCurrentPath][mCurrentWaypoint] - Position()).MagnitudeSqr() < EPSILON * mSpeed /25.0f) {
+		if ((sPaths[mCurrentPath][mCurrentWaypoint] - Position()).MagnitudeSqr() < EPSILON * mSpeed / 25.0f) {
 			//we have made it to the next waypoint
 			mCurrentWaypoint++;
 		}
-		else {
-			mCurrentState = InFormation;
-		}
+		
+	}else {
+		mCurrentState = InFormation;
 	}
 
 }
