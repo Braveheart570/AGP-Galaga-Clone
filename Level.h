@@ -26,8 +26,6 @@ private:
 	BackgroundStars* mBackgroundStars;
 
 	Player* mPlayer;
-	//test var
-	Enemy* mEnemy;
 
 	int mStage;
 	bool mStageStarted;

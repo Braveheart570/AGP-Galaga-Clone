@@ -3,6 +3,7 @@
 std::vector<std::vector<Vector2>> Enemy::sPaths;
 
 Player* Enemy::sPlayer = nullptr;
+Formation* Enemy::sFormation = nullptr;
 
 
 
@@ -14,14 +15,42 @@ void Enemy::CreatePaths() {
 
 	BezierPath* path = new BezierPath();
 
-	path->AddCurve({Vector2(500.0f,10.0f),Vector2(500.0f,0.0f),Vector2(500.0f,310.0f),Vector2(500.0f,300.0f) }, 1);
+	//path->AddCurve({Vector2(500.0f,10.0f),Vector2(500.0f,0.0f),Vector2(500.0f,310.0f),Vector2(500.0f,300.0f) }, 1);
+
+	path->AddCurve({
+		Vector2(screenMidPoint + 50.0f,-10.0f),
+		Vector2(screenMidPoint + 50.0f,-20.0f),
+		Vector2(screenMidPoint + 50.0f,30.0f),
+		Vector2(screenMidPoint + 50.0f,20.0f) },
+		1
+		);
+
+	path->AddCurve({
+		Vector2(screenMidPoint + 50.0f,20.0f),
+		Vector2(screenMidPoint + 50.0f,100.0f),
+		Vector2(75.0f,325.0f),
+		Vector2(75.0f,425.0f) },
+		25
+		);
+
+	path->AddCurve({
+		Vector2(75.0f,425.0f),
+		Vector2(75.0f,650.0f),
+		Vector2(350,650),
+		Vector2(350,425) },
+		25
+		);
 
 	sPaths.push_back(std::vector<Vector2>());
 	path->Sample(&sPaths[currentPath]);
 }
 
+void Enemy::SetFormation(Formation* formation) {
+	int Index();
+}
 
-Enemy::Enemy(int path) : mCurrentPath(path) {
+
+Enemy::Enemy(int path, int index, bool challenge) : mCurrentPath(path), mIndex(index), mChallengeStage(challenge) {
 
 	mTimer = Timer::Instance();
 
@@ -31,7 +60,7 @@ Enemy::Enemy(int path) : mCurrentPath(path) {
 
 	Position(sPaths[mCurrentPath][0]);
 
-	mTexture = new Texture("AnimatedEnemies.png", 0, 0, 52, 40);
+	mTexture = nullptr;
 	mTexture->Parent(this);
 	mTexture->Position(Vect2_Zero);
 
@@ -49,6 +78,54 @@ Enemy::~Enemy() {
 
 Enemy::State Enemy::CurrentState() {
 	return mCurrentState;
+}
+
+Vector2 Enemy::WorldFormationPosition() {
+	return sFormation->Position() + LocalFormationPosition();
+}
+
+void Enemy::FlyInComplete() {
+	if (mChallengeStage) {
+		mCurrentState = Dead;
+	}
+	else {
+		joinFormation();
+	}
+}
+
+void Enemy::PathComplete() {
+
+	if (mChallengeStage) {
+		mCurrentState = Dead;
+	}
+
+}
+
+void Enemy::joinFormation() {
+	Position(WorldFormationPosition());
+	Rotation(0);
+	Parent(sFormation);
+	mCurrentState = InFormation;
+}
+
+
+Enemy::EnemyType Enemy::Type() {
+	return mType;
+}
+
+int Enemy::Index() {
+	return mIndex;
+}
+
+
+void Enemy::Dive(int index) {
+
+	Parent(nullptr);
+	mCurrentState = Diving;
+	mDiveStartPosition = Position();
+	mCurrentWaypoint = 1;
+
+
 }
 
 
@@ -75,24 +152,36 @@ void Enemy::HandleFlyInState() {
 	if (mCurrentWaypoint < sPaths[mCurrentPath].size()) {
 		Vector2 dist = sPaths[mCurrentPath][mCurrentWaypoint] - Position();
 		Translate(dist.Normalized()*mSpeed*mTimer->DeltaTime(), WORLD);
-		Rotate(atan2(dist.y, dist.x)*RAD_TO_DEG + 90.0f);
+		Rotation(atan2(dist.y, dist.x)*RAD_TO_DEG + 90.0f);
 
 		if ((sPaths[mCurrentPath][mCurrentWaypoint] - Position()).MagnitudeSqr() < EPSILON * mSpeed / 25.0f) {
 			//we have made it to the next waypoint
 			mCurrentWaypoint++;
 		}
+
+		if (mCurrentWaypoint >= sPaths[mCurrentPath].size()) {
+			//We have reached the end of your FlyIn path
+			PathComplete();
+		}
 		
 	}else {
-		mCurrentState = InFormation;
+		Vector2 dist = WorldFormationPosition() - Position();
+		Translate(dist.Normalized() * mSpeed * mTimer->DeltaTime(),WORLD);
+		Rotation(atan2(dist.y, dist.x) * RAD_TO_DEG + 90.0f);
+
+		if (dist.MagnitudeSqr() < EPSILON * mSpeed / 25.0f) {
+			FlyInComplete();
+		}
+
 	}
 
 }
 
-void Enemy::HandleInFormationState() {}
+void Enemy::HandleInFormationState() {
 
-void Enemy::HandleDiveState() {}
+	Position(LocalFormationPosition());
 
-void Enemy::HandleDeadState() {}
+}
 
 void Enemy::HandleStates() {
 
@@ -141,11 +230,6 @@ void Enemy::RenderFlyInState() {
 	}
 
 }
-
-void Enemy::RenderDiveState() {}
-
-void Enemy::RenderDeadState() {}
-
 
 void Enemy::RenderStates() {
 
