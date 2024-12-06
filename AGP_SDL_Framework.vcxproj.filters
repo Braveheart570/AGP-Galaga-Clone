@@ -230,5 +230,8 @@
     <ClInclude Include="ScreenManager.h">
       <Filter>Game Header Files\Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="Wasp.h">
+      <Filter>Game Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
