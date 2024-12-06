@@ -52,19 +52,19 @@ void Formation::Lock() {
 void Formation::Update() {
 
 	if (!mLocked || mOffsetCounter != 4) {
-		//our side to side animation is playing
+		//Our side-to-side animation is playing
 		mOffsetTimer += mTimer->DeltaTime();
 
 		if (mOffsetTimer >= mOffsetDelay) {
 			mOffsetCounter++;
-
 			Translate(Vect2_Right * (float)mOffsetDirection * mOffsetAmount, WORLD);
 
 			if (mOffsetCounter == 8) {
 				mOffsetCounter = 0;
 				mOffsetDirection *= -1;
-				
 			}
+
+			mOffsetTimer = 0.0f;
 		}
 	}
 	else {

@@ -46,7 +46,7 @@ void Enemy::CreatePaths() {
 }
 
 void Enemy::SetFormation(Formation* formation) {
-	int Index();
+	sFormation = formation;
 }
 
 
@@ -61,10 +61,8 @@ Enemy::Enemy(int path, int index, bool challenge) : mCurrentPath(path), mIndex(i
 	Position(sPaths[mCurrentPath][0]);
 
 	mTexture = nullptr;
-	mTexture->Parent(this);
-	mTexture->Position(Vect2_Zero);
 
-	mSpeed = 100.0f;
+	mSpeed = 450.0f;
 }
 
 Enemy::~Enemy() {
