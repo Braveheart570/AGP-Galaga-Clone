@@ -21,6 +21,7 @@ PlayScreen::PlayScreen() {
 	mPlayer = nullptr;
 
 	Enemy::CreatePaths(); // must be called before enemy creation
+	Wasp::CreateDivePaths();
 
 }
 

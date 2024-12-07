@@ -87,7 +87,7 @@ void Enemy::FlyInComplete() {
 		mCurrentState = Dead;
 	}
 	else {
-		joinFormation();
+		JoinFormation();
 	}
 }
 
@@ -99,7 +99,7 @@ void Enemy::PathComplete() {
 
 }
 
-void Enemy::joinFormation() {
+void Enemy::JoinFormation() {
 	Position(WorldFormationPosition());
 	Rotation(0);
 	Parent(sFormation);

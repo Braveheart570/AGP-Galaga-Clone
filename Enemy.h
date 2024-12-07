@@ -61,7 +61,7 @@ protected:
 	virtual void PathComplete();
 	virtual void FlyInComplete();
 
-	void joinFormation();
+	void JoinFormation();
 
 	virtual Vector2 WorldFormationPosition();
 	virtual Vector2 LocalFormationPosition() = 0;
