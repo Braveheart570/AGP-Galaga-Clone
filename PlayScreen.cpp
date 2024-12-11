@@ -22,6 +22,8 @@ PlayScreen::PlayScreen() {
 
 	Enemy::CreatePaths(); // must be called before enemy creation
 	Wasp::CreateDivePaths();
+	Butterfly::CreateDivePaths();
+	Boss::CreateDivePaths();
 
 }
 
