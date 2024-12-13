@@ -37,6 +37,12 @@
     <Filter Include="Game Source Files\Singletons">
       <UniqueIdentifier>{d73b1503-2ed8-4f3f-a330-3628717c3916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{3c00c99c-b5da-4897-91ef-e7816f1a55c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TinyXML">
+      <UniqueIdentifier>{f4931fd8-0aae-4b04-a240-c9f4fa7ed01b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AGP_SDL_Framework.cpp">
@@ -137,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Game Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>TinyXML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,5 +251,13 @@
     <ClInclude Include="Boss.h">
       <Filter>Game Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Level1.xml">
+      <Filter>Data</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

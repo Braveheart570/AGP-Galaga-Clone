@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Level>
+
+	<ChalleningStage value ="false"/>
+
+	<Spawn path ="1" priority ="0">
+		<Enemy type="Butterfly" index="0"/>
+		<Enemy type="Butterfly" index="1"/>
+	</Spawn>
+	
+</Level>
